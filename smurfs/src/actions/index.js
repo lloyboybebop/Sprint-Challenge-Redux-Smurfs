@@ -33,14 +33,29 @@ export const findSmurfs = () => dispatch => {
   .catch(err => console.log('ERROR FINDING SMURF:', err.message))
 }
 
- export const deliverSmurf = () => {
+ export const deliverSmurf = smurf => dispatch => {
   console.log('Deliver Smurf')
+
+  dispatch({type: ACTIONS.DELIVERING_SMURF});
+  axios.post('http://localhost:3333/smurfs/', {...smurf})
+  .then(response => dispatch({type: ACTIONS.SMURF_DELIVERED, smurfs: response.data}))
+  .catch(err => console.log('ERROR DELIVERING SMURFS:', err.message))
 }
 
- export const changeSmurf = () => {
+ export const changeSmurf = smurf => dispatch => {
   console.log('Change Smurf')
+
+  dispatch({type: ACTIONS.CHANGING_SMURFS});
+  axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+  .then(response => {console.log(response); return dispatch({type: ACTIONS.SMURF_CHANGED, smurfs: response.data})})
+  .catch(err => console.log('ERROR CHANGING SMURFS:', err.message))
 }
 
- export const deleteSmurf = () => {
+ export const deleteSmurf = smurf => dispatch => {
   console.log('Delete Smurf')
+
+  dispatch({type: ACTIONS.DELETING_SMURFS});
+  axios.delete(`http://localhost:3333/smurfs/${smurf.id}`)
+  .then(response => {console.log(response); return dispatch({type: ACTIONS.SMURF_DELETED, smurfs: response.data})})
+  .catch(err => console.log('ERROR DELETING SMURFS:', err.message))
 }

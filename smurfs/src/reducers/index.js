@@ -37,24 +37,27 @@ const papaSmurf = (village = emptyVillage, action) => {
     return {...village, findingSmurfs: true};
 
     case ACTIONS.SMURFS_FOUND:
-    return {...village, findingSmurfs: false, smurfs:action.smurfs};
+    return {...village, findingSmurfs: false, smurfs: action.smurfs};
 
     case ACTIONS.DELIVERING_SMURF:
-    return village;
+    return {...village, deliveringSmurf: true};
 
     case ACTIONS.SMURF_DELIVERED:
-    return village;
+    return {...village, deliveringSmurf: false, smurfs: action.smurfs};
 
     case ACTIONS.CHANGING_SMURF:
-    return village;
+    return {...village, changingSmurf: true};
 
     case ACTIONS.SMURF_CHANGED:
-    return village;
+    return {...village, changingSmurf: false, smurfs: action.smurf};
 
     case ACTIONS.DELETING_SMURF:
-    return village;
+    return {...village, deletingSmurf: true};
 
     case ACTIONS.SMURF_DELETED:
+    return {...village, deletingSmurf: false, smurfs: action.smurf};
+
+    default:
     return village;
   }
 }

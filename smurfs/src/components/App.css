@@ -26,3 +26,32 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.button {
+  height: 50px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: turquoise;
+  cursor: pointer;
+}
+
+.add-smurf-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.add-smurf-container .add-smurf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-smurf-container .add-smurf  input {
+  height: 50px;
+  padding-left: 8px;
+  font-size: 15px;
+  margin-right: 8px;
+}
